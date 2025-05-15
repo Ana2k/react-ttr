@@ -40,46 +40,14 @@
 //   )
 // }
 
-// export default App
+import {useState} from 'react';
+import MyButton from './dummy-components/MyButton';
 
-// Array of product objects, each containing:
-// - title: the name of the product
-// - id: unique identifier for each product
-// - isFruit: boolean flag to determine if the product is a fruit
-const products = [
-  {title: 'Cabbage', id: 1, isFruit: false},
-  {title: 'Garlic', id: 2, isFruit: false},
-  {title: 'Apple', id: 3, isFruit: true},
-]
-
-export default function ShoppingList(){
-  // const listItems = products.map(
-  //   product => (
-  //     <li 
-  //       key={product.id}
-  //       style={{color: product.isFruit ? 'magenta' : 'orange'}}
-  //     >
-  //       {product.title}
-  //     </li>
-  //   )
-  // );
-
-  const listItems = products.map(product =>
-    <li key = {product.id}
-    style = {{color: product.isFruit ? 'magenta' : 'darkgreen'}}
-    >
-      {product.title}
-    </li>
-  );
+export default function MyApp() {
   return (
-    // Container div with padding for better spacing
-    <div style={{ padding: '20px' }}>
-      {/* Heading for the shopping list */}
-      <h2>Shopping List</h2>
-      {/* Unordered list containing our mapped list items */}
-      <ul>
-        {listItems}
-      </ul>
+    <div>
+      <h1>Click ME! Already!! 😉</h1>
+      <MyButton />
     </div>
   );
 }
