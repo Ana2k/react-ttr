@@ -41,13 +41,23 @@
 // }
 
 import {useState} from 'react';
-import MyButton from './dummy-components/MyButton';
+import ItemList from './dummy-components/ItemList';
 
 export default function MyApp() {
   return (
-    <div>
-      <h1>Click ME! Already!! 😉</h1>
-      <MyButton />
+    <div style={{ 
+      maxWidth: '800px', 
+      margin: '0 auto', 
+      padding: '20px',
+      fontFamily: 'system-ui, -apple-system, sans-serif'
+    }}>
+      <h1 style={{ color: '#646cff', textAlign: 'center' }}>
+        Hook Rules Demo
+      </h1>
+      <p style={{ textAlign: 'center', color: '#666' }}>
+        Each item maintains its own state independently
+      </p>
+      <ItemList />
     </div>
   );
 }

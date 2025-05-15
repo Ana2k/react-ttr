@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
 //react componenets name with capital letter while, 
 
-function MyButton(){
+function MyButton({ itemName }) {
   const [count, setCount] = useState(0);
 
-  function handleClick(){
-    setCount(count+1);
+  function handleClick() {
+    setCount(count + 1);
   }
+
   return (
-    <button onClick={handleClick}>
-      Clicked me {count} times haven't you? 🫦
-      Go ahead once more 😉
-    </button>
+    <div style={{ margin: '10px', padding: '10px', border: '1px solid #646cff', borderRadius: '8px' }}>
+      <h3>{itemName}</h3>
+      <button onClick={handleClick}>
+        Clicked {count} times
+      </button>
+    </div>
   );
 }
 
