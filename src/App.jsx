@@ -3,6 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import MyButton from './dummy-components/MyButton'
+import AboutPage from './dummy-components/AboutPage'
+import Profile from './dummy-components/Profile'
+import IfContent from './dummy-components/IfContent'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,14 +22,17 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
+        <Profile />
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
-        <MyButton/>
+        <MyButton />
       </div>
+      <IfContent />
+      <AboutPage />
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
