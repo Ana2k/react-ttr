@@ -8,7 +8,7 @@ function ItemList() {
     { id: 3, name: 'Orange' }
   ]);
 
-  const [showOnlyEven, setShowOnlyEven] = useState(false);
+  const [newItemName, setNewItemName] = useState('');
 
   // Filter items based on condition
   const filteredItems = items.filter(item => {
@@ -20,10 +20,10 @@ function ItemList() {
     <div style={{ padding: '20px' }}>
       <div style={{ marginBottom: '20px' }}>
         <button 
-          onClick={() => setShowOnlyEven(!showOnlyEven)}
+          onClick={handleAddItem}
           style={{
-            padding: '10px 20px',
-            backgroundColor: showOnlyEven ? '#ff6b6b' : '#646cff',
+            padding: '8px 16px',
+            backgroundColor: '#646cff',
             color: 'white',
             border: 'none',
             borderRadius: '4px',
@@ -35,8 +35,30 @@ function ItemList() {
       </div>
 
       <div style={{ display: 'grid', gap: '10px' }}>
-        {filteredItems.map(item => (
-          <MyButton key={item.id} itemName={item.name} />
+        {items.map(item => (
+          <div key={item.id} style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '10px',
+            backgroundColor: '#f5f5f5',
+            padding: '10px',
+            borderRadius: '8px'
+          }}>
+            <MyButton itemName={item.name} />
+            <button
+              onClick={() => handleRemoveItem(item.id)}
+              style={{
+                padding: '5px 10px',
+                backgroundColor: '#ff6b6b',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer'
+              }}
+            >
+              Remove
+            </button>
+          </div>
         ))}
       </div>
     </div>
