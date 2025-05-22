@@ -57,15 +57,18 @@ function Board({ xIsNext, squares, onPlay}){
   const winner = calculateWinner(squares);
 
   let status;
+  let statusColor;
   if(winner){
     status = "Winner: "+winner;
+    statusColor = winner === "X" ? "var(--x-color)" : "var(--o-color)";
   }else{
     status = "Next Player: "+(xIsNext?"X":"O");
+    statusColor = xIsNext ? "var(--x-color)" : "var(--o-color)";
   }
 
   return(
     <>
-      <div className="status">{status}</div>
+      <div className="status" style={{ color: statusColor }}>{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
