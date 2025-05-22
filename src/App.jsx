@@ -115,10 +115,10 @@ export default function Game() {
 
   const themes = {
     default: {
-      name: 'Default',
+      name: 'Classic',
       colors: {
-        '--x-color': '#2196F3',
-        '--o-color': '#F44336',
+        '--x-color': '#E91E63', // Pink
+        '--o-color': '#2196F3', // Blue
         '--board-bg': '#ffffff',
         '--border-color': '#333333'
       }
@@ -126,8 +126,8 @@ export default function Game() {
     dark: {
       name: 'Dark',
       colors: {
-        '--x-color': '#64B5F6',
-        '--o-color': '#EF5350',
+        '--x-color': '#FF4081', // Bright Pink
+        '--o-color': '#64B5F6', // Light Blue
         '--board-bg': '#2d2d2d',
         '--border-color': '#ffffff'
       }
@@ -135,19 +135,37 @@ export default function Game() {
     retro: {
       name: 'Retro',
       colors: {
-        '--x-color': '#FFD700',
-        '--o-color': '#FF69B4',
+        '--x-color': '#FFD700', // Gold
+        '--o-color': '#00FF00', // Neon Green
         '--board-bg': '#000000',
-        '--border-color': '#00FF00'
+        '--border-color': '#FF00FF' // Neon Pink
       }
     },
     minimal: {
       name: 'Minimal',
       colors: {
-        '--x-color': '#000000',
-        '--o-color': '#666666',
+        '--x-color': '#FF5722', // Deep Orange
+        '--o-color': '#009688', // Teal
         '--board-bg': '#ffffff',
         '--border-color': '#cccccc'
+      }
+    },
+    nature: {
+      name: 'Nature',
+      colors: {
+        '--x-color': '#4CAF50', // Green
+        '--o-color': '#795548', // Brown
+        '--board-bg': '#f5f5f5',
+        '--border-color': '#8BC34A' // Light Green
+      }
+    },
+    sunset: {
+      name: 'Sunset',
+      colors: {
+        '--x-color': '#FF9800', // Orange
+        '--o-color': '#9C27B0', // Purple
+        '--board-bg': '#FFF3E0',
+        '--border-color': '#FF5722' // Deep Orange
       }
     }
   };
@@ -245,13 +263,10 @@ export default function Game() {
             className={`theme-option ${theme === key ? 'selected' : ''}`}
             onClick={() => selectTheme(key)}
           >
-            <div
-              className="theme-preview"
-              style={{
-                background: themeData.colors['--board-bg'],
-                borderColor: themeData.colors['--border-color']
-              }}
-            />
+            <div className="theme-preview">
+              <div className="preview-x" style={{ color: themeData.colors['--x-color'] }}>X</div>
+              <div className="preview-o" style={{ color: themeData.colors['--o-color'] }}>O</div>
+            </div>
             {themeData.name}
           </div>
         ))}
