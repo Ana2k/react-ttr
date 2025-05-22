@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import './TicTacToe.css';
+import '../styles/TicTacToe.css';
 
 /**
  * Square Component
