@@ -7,12 +7,15 @@ import './App.css';
  * Props:
  * - value: string | null - The content to display in the square ('X', 'O', or null)
  * - onSquareClick: function - Callback function when square is clicked
+ * - xColor: string - Color for 'X'
+ * - oColor: string - Color for 'O'
  * 
  * Renders a single square in the tic-tac-toe grid that can be clicked to make a move
  */
-function Square({value, onSquareClick}){
+function Square({value, onSquareClick, xColor, oColor}){
+  const style = value === "X" ? { color: xColor } : value === "O" ? { color: oColor } : {};
   return (
-    <button className='square' onClick={onSquareClick}>
+    <button className='square' onClick={onSquareClick} style={style}>
       {value}
     </button>
   );
@@ -25,10 +28,12 @@ function Square({value, onSquareClick}){
  * - xIsNext: boolean - Indicates if it's X's turn (true) or O's turn (false)
  * - squares: Array(9) - Current state of the board, array of 9 elements (null, 'X', or 'O')
  * - onPlay: function - Callback function to handle a move
+ * - xColor: string - Color for 'X'
+ * - oColor: string - Color for 'O'
  * 
  * Manages the game board, handles moves, and displays the current game status
  */
-function Board({ xIsNext, squares, onPlay}){
+function Board({ xIsNext, squares, onPlay, xColor, oColor }) {
   /**
    * handleClick
    * ----------
@@ -41,14 +46,14 @@ function Board({ xIsNext, squares, onPlay}){
    * 3. Places X or O
    * 4. Calls onPlay with new state
    */
-  function handleClick(i){
-    if (calculateWinner(squares) || squares[i]){
+  function handleClick(i) {
+    if (calculateWinner(squares) || squares[i]) {
       return;
     }
     const nextSquares = squares.slice();
-    if(xIsNext){
+    if (xIsNext) {
       nextSquares[i] = "X";
-    }else{
+    } else {
       nextSquares[i] = "O";
     }
     onPlay(nextSquares);
@@ -58,31 +63,31 @@ function Board({ xIsNext, squares, onPlay}){
 
   let status;
   let statusColor;
-  if(winner){
-    status = "Winner: "+winner;
+  if (winner) {
+    status = "Winner: " + winner;
     statusColor = winner === "X" ? "var(--x-color)" : "var(--o-color)";
-  }else{
-    status = "Next Player: "+(xIsNext?"X":"O");
+  } else {
+    status = "Next Player: " + (xIsNext ? "X" : "O");
     statusColor = xIsNext ? "var(--x-color)" : "var(--o-color)";
   }
 
-  return(
+  return (
     <>
       <div className="status" style={{ color: statusColor }}>{status}</div>
       <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+        <Square value={squares[0]} onSquareClick={() => handleClick(0)} xColor={xColor} oColor={oColor} />
+        <Square value={squares[1]} onSquareClick={() => handleClick(1)} xColor={xColor} oColor={oColor} />
+        <Square value={squares[2]} onSquareClick={() => handleClick(2)} xColor={xColor} oColor={oColor} />
       </div>
       <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+        <Square value={squares[3]} onSquareClick={() => handleClick(3)} xColor={xColor} oColor={oColor} />
+        <Square value={squares[4]} onSquareClick={() => handleClick(4)} xColor={xColor} oColor={oColor} />
+        <Square value={squares[5]} onSquareClick={() => handleClick(5)} xColor={xColor} oColor={oColor} />
       </div>
       <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+        <Square value={squares[6]} onSquareClick={() => handleClick(6)} xColor={xColor} oColor={oColor} />
+        <Square value={squares[7]} onSquareClick={() => handleClick(7)} xColor={xColor} oColor={oColor} />
+        <Square value={squares[8]} onSquareClick={() => handleClick(8)} xColor={xColor} oColor={oColor} />
       </div>
     </>
   );
@@ -282,10 +287,10 @@ export default function Game() {
    * 
    * Updates game history with new move and advances current move
    */
-  function handlePlay(nextSquares){
-    const nextHistory = [...history.slice(0,currentMove+1),nextSquares];
+  function handlePlay(nextSquares) {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
-    setCurrentMove(nextHistory.length-1);
+    setCurrentMove(nextHistory.length - 1);
   }
 
   /**
@@ -308,7 +313,7 @@ export default function Game() {
    * 
    * Allows going back to a previous move in the game history
    */
-  function jumpTo(nextMove){
+  function jumpTo(nextMove) {
     setCurrentMove(nextMove);
   }
 
@@ -386,6 +391,9 @@ export default function Game() {
     };
   }, []);
 
+  const xColor = themes[theme].colors['--x-color'];
+  const oColor = themes[theme].colors['--o-color'];
+
   return (
     <div className="game">
       <h1 className="game-title">Tic Tac Toe</h1>
@@ -420,7 +428,13 @@ export default function Game() {
       </div>
 
       <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        <Board 
+          xIsNext={xIsNext} 
+          squares={currentSquares} 
+          onPlay={handlePlay} 
+          xColor={xColor}
+          oColor={oColor}
+        />
       </div>
       <div className="game-info">
         {gameOver && (
@@ -448,7 +462,7 @@ export default function Game() {
  * - 3 columns
  * - 2 diagonals
  */
-function calculateWinner(squares){
+function calculateWinner(squares) {
   const lines = [
     [0, 1, 2], // top row
     [3, 4, 5], // middle row
@@ -459,9 +473,9 @@ function calculateWinner(squares){
     [0, 4, 8], // diagonal top-left to bottom-right
     [2, 4, 6], // diagonal top-right to bottom-left
   ];
-  for (let i=0;i<lines.length;i++){
-    const [a,b,c] = lines[i];
-    if(squares[a] && squares[a] === squares[b] && squares[a]===squares[c]){
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
   }
