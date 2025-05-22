@@ -154,130 +154,29 @@
 }
 
 :root {
-  /* Base colors */
-  --primary-color: #4a90e2;
-  --secondary-color: #f5f5f5;
-  --text-color: #333;
-  --hover-color: #357abd;
-  --background-color: #ffffff;
+  /* Base variables that will be overridden by themes */
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --board-bg: #ffffff;
+  --square-bg: #ffffff;
+  --square-hover: #f5f5f5;
+  --border-color: #333333;
+  --x-color: #E91E63;
+  --o-color: #2196F3;
+  --button-bg: #4CAF50;
+  --button-hover: #45a049;
+  --restart-button-bg: #f44336;
+  --restart-button-hover: #d32f2f;
   --shadow-color: rgba(0, 0, 0, 0.1);
-  
-  /* Transitions */
-  --transition-speed: 0.3s;
-}
-
-/* App Container */
-.app {
-  min-height: 100vh;
-  padding: 2rem;
-  background-color: var(--background-color);
-  transition: background-color var(--transition-speed);
-}
-
-/* Home Page */
-.home {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 2rem;
-}
-
-.home h1 {
-  font-size: 2.5rem;
-  color: var(--text-color);
-  margin-bottom: 2rem;
-  font-weight: 700;
-}
-
-/* Game Buttons Container */
-.game-buttons {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* Game Buttons */
-.game-buttons button {
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 8px;
-  background-color: var(--primary-color);
-  color: white;
-  cursor: pointer;
-  transition: all var(--transition-speed);
-  box-shadow: 0 2px 4px var(--shadow-color);
-  min-width: 200px;
-}
-
-.game-buttons button:hover {
-  background-color: var(--hover-color);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px var(--shadow-color);
-}
-
-.game-buttons button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px var(--shadow-color);
-}
-
-/* Back Button */
-.back-button {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all var(--transition-speed);
-  box-shadow: 0 2px 4px var(--shadow-color);
-  font-size: 1rem;
-}
-
-.back-button:hover {
-  background-color: var(--hover-color);
-  transform: translateX(-2px);
-}
-
-.back-button:active {
-  transform: translateX(0);
-}
-
-/* Dark Theme */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: #64b5f6;
-    --secondary-color: #2d2d2d;
-    --text-color: #ffffff;
-    --hover-color: #42a5f5;
-    --background-color: #1a1a1a;
-    --shadow-color: rgba(0, 0, 0, 0.3);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-  .app {
-    padding: 1rem;
-  }
-  
-  .home h1 {
-    font-size: 2rem;
-  }
-  
-  .game-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .game-buttons button {
-    width: 100%;
-    max-width: 300px;
-  }
+  --status-color: #333333;
+  --move-list-color: #666666;
+  --move-list-hover: #f0f0f0;
+  --title-color: #333333;
+  --title-shadow: rgba(0, 0, 0, 0.1);
+  --background-pattern: linear-gradient(135deg, #f5f5f5 25%, transparent 25%),
+                        linear-gradient(225deg, #f5f5f5 25%, transparent 25%),
+                        linear-gradient(45deg, #f5f5f5 25%, transparent 25%),
+                        linear-gradient(315deg, #f5f5f5 25%, #ffffff 25%);
 }
 
 /* Remove the media query for dark mode since it's now handled by themes */
