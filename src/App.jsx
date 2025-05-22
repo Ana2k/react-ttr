@@ -1,4 +1,3 @@
-//Following this we will work on tic-tac-toe
 export default function App() {
 
   return (
