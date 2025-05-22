@@ -1,13 +1,38 @@
-# React + Vite
+# Tic-Tac-Toe Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, themeable Tic-Tac-Toe game built with React and Vite. Features include:
+- Multiple themes (Classic, Dark, Retro, Minimal, Nature, Sunset)
+- Responsive design
+- Move history
+- Game state management
+- Beautiful animations and transitions
 
-Currently, two official plugins are available:
+## Local Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-## Expanding the ESLint configuration
+## Deployment
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project is deployed using Vercel. To deploy your own version:
+
+1. Fork this repository
+2. Create a Vercel account at [vercel.com](https://vercel.com)
+3. Import your repository in Vercel
+4. Deploy!
+
+## Technologies Used
+
+- React
+- Vite
+- CSS3 with CSS Variables
+- Modern JavaScript (ES6+)
+
 # react-ttr

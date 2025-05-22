@@ -154,7 +154,7 @@
 }
 
 :root {
-  /* Light theme (default) */
+  /* Base variables that will be overridden by themes */
   --bg-color: #ffffff;
   --text-color: #333333;
   --board-bg: #ffffff;
@@ -171,26 +171,18 @@
   --status-color: #333333;
   --move-list-color: #666666;
   --move-list-hover: #f0f0f0;
+  --title-color: #333333;
+  --title-shadow: rgba(0, 0, 0, 0.1);
+  --background-pattern: linear-gradient(135deg, #f5f5f5 25%, transparent 25%),
+                        linear-gradient(225deg, #f5f5f5 25%, transparent 25%),
+                        linear-gradient(45deg, #f5f5f5 25%, transparent 25%),
+                        linear-gradient(315deg, #f5f5f5 25%, #ffffff 25%);
 }
 
+/* Remove the media query for dark mode since it's now handled by themes */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-color: #1a1a1a;
-    --text-color: #ffffff;
-    --board-bg: #2d2d2d;
-    --square-bg: #2d2d2d;
-    --square-hover: #3d3d3d;
-    --border-color: #ffffff;
-    --x-color: #FF4081;
-    --o-color: #64B5F6;
-    --button-bg: #388E3C;
-    --button-hover: #2E7D32;
-    --restart-button-bg: #EF5350;
-    --restart-button-hover: #D32F2F;
-    --shadow-color: rgba(0, 0, 0, 0.3);
-    --status-color: #ffffff;
-    --move-list-color: #b0b0b0;
-    --move-list-hover: #3d3d3d;
+    /* This will be overridden by the theme system */
   }
 }
 
@@ -198,6 +190,20 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-image: var(--background-pattern);
+  background-size: 40px 40px;
+  background-position: 0 0, 0 0, 20px 20px, 20px 20px;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .game {
@@ -211,19 +217,27 @@ body {
   align-items: center;
   position: relative;
   padding-top: 60px;
+  background: var(--bg-color);
+  border-radius: 20px;
+  box-shadow: 0 0 30px var(--shadow-color);
+  padding: 40px;
+  max-width: 1200px;
+  width: 100%;
 }
 
 .game-title {
   position: absolute;
   top: 20px;
-  font-size: 32px;
+  font-size: 36px;
   font-weight: bold;
-  color: var(--text-color);
+  color: var(--title-color);
   text-align: center;
   width: 100%;
   margin: 0;
   padding: 10px;
   transition: color 0.3s;
+  text-shadow: 2px 2px 4px var(--title-shadow);
+  letter-spacing: 2px;
 }
 
 .game-board {
@@ -361,6 +375,7 @@ body {
   top: 20px;
   right: 20px;
   background: var(--board-bg);
+  backdrop-filter: blur(5px);
   border: 2px solid var(--border-color);
   border-radius: 50%;
   width: 44px;
@@ -402,7 +417,8 @@ body {
   width: 280px;
   height: 100vh;
   background: var(--board-bg);
-  box-shadow: -2px 0 8px var(--shadow-color);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--border-color);
   padding: 20px;
   transition: right 0.3s ease;
   z-index: 999;
@@ -499,5 +515,26 @@ body {
 
 .square:not(:empty):nth-child(even) {
   color: var(--o-color);
+}
+
+/* Add responsive design */
+@media (max-width: 768px) {
+  .game {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .game-title {
+    font-size: 28px;
+    position: relative;
+    top: 0;
+    margin-bottom: 20px;
+  }
+
+  .theme-toggle {
+    top: 10px;
+    right: 10px;
+  }
 }
 
