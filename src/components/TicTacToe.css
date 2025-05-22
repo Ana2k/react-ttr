@@ -3,9 +3,8 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  max-width: 600px;
-  margin: 0 auto;
-  position: relative;
+  max-width: 400px;
+  margin: 20px auto;
   background: var(--board-bg);
   border-radius: 12px;
   box-shadow: 0 4px 6px var(--shadow-color);
@@ -13,9 +12,9 @@
 
 .game-title {
   color: var(--title-color);
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 4px var(--title-shadow);
+  text-align: center;
 }
 
 .game-board {
@@ -49,16 +48,19 @@
   margin-bottom: 10px;
   font-size: 1.2rem;
   font-weight: bold;
-  transition: color 0.3s ease;
-  text-shadow: 0 1px 2px var(--shadow-color);
+  color: var(--text-color);
 }
 
 .game-info {
-  margin-left: 20px;
+  text-align: center;
 }
 
 .game-info ol {
   padding-left: 30px;
+  display: inline-block;
+  text-align: left;
+  max-height: 120px;
+  overflow-y: auto;
 }
 
 .game-info button {
@@ -94,22 +96,25 @@
 
 /* Theme Toggle Button */
 .theme-toggle {
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 20px;
-  background: none;
-  border: none;
+  background: var(--board-bg);
+  border: 2px solid var(--border-color);
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  z-index: 1001;
 }
 
 .theme-toggle:hover {
   background-color: var(--square-hover);
+  transform: scale(1.05);
 }
 
 .theme-toggle svg {
@@ -131,10 +136,30 @@
   transition: right 0.3s ease;
   z-index: 1000;
   cursor: pointer;
+  overflow-y: auto;
 }
 
 .theme-drawer.open {
   right: 0;
+}
+
+.theme-drawer::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: -1;
+}
+
+.theme-drawer.open::before {
+  opacity: 1;
+  visibility: visible;
 }
 
 .theme-drawer h3 {
@@ -178,6 +203,7 @@
 @media (max-width: 600px) {
   .game {
     padding: 10px;
+    margin: 10px;
   }
 
   .square {
@@ -187,7 +213,7 @@
   }
 
   .game-title {
-    font-size: 2rem;
+    font-size: 1.3rem;
   }
 
   .theme-drawer {

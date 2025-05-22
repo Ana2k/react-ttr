@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Flames.css';
+// import './Flames.css';
 
 export default function Flames() {
   const [name1, setName1] = useState('');
