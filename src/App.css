@@ -161,13 +161,16 @@
   --square-bg: #ffffff;
   --square-hover: #f5f5f5;
   --border-color: #333333;
-  --x-color: #2196F3;
-  --o-color: #F44336;
+  --x-color: #E91E63;
+  --o-color: #2196F3;
   --button-bg: #4CAF50;
   --button-hover: #45a049;
   --restart-button-bg: #f44336;
   --restart-button-hover: #d32f2f;
   --shadow-color: rgba(0, 0, 0, 0.1);
+  --status-color: #333333;
+  --move-list-color: #666666;
+  --move-list-hover: #f0f0f0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -178,13 +181,16 @@
     --square-bg: #2d2d2d;
     --square-hover: #3d3d3d;
     --border-color: #ffffff;
-    --x-color: #64B5F6;
-    --o-color: #EF5350;
+    --x-color: #FF4081;
+    --o-color: #64B5F6;
     --button-bg: #388E3C;
     --button-hover: #2E7D32;
     --restart-button-bg: #EF5350;
     --restart-button-hover: #D32F2F;
     --shadow-color: rgba(0, 0, 0, 0.3);
+    --status-color: #ffffff;
+    --move-list-color: #b0b0b0;
+    --move-list-hover: #3d3d3d;
   }
 }
 
@@ -287,7 +293,7 @@ body {
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: bold;
-  color: var(--text-color);
+  color: var(--status-color);
   text-align: center;
   transition: color 0.3s;
 }
@@ -306,6 +312,7 @@ body {
   padding-left: 20px;
   margin: 0;
   margin-top: 20px;
+  color: var(--move-list-color);
 }
 
 .game-info button {
@@ -325,6 +332,7 @@ body {
 .game-info button:hover {
   background: var(--button-hover);
   transform: scale(1.02);
+  color: white;
 }
 
 .restart-button {
@@ -405,12 +413,13 @@ body {
 }
 
 .theme-drawer h3 {
-  color: var(--text-color);
+  color: var(--status-color);
   margin: 0 0 20px 0;
   font-size: 18px;
 }
 
 .theme-option {
+  color: var(--move-list-color);
   display: flex;
   align-items: center;
   padding: 10px;
@@ -421,7 +430,14 @@ body {
 }
 
 .theme-option:hover {
-  background: var(--square-hover);
+  background: var(--move-list-hover);
+  color: var(--text-color);
+}
+
+.theme-option.selected {
+  background: var(--move-list-hover);
+  border-left: 3px solid var(--x-color);
+  color: var(--text-color);
 }
 
 .theme-preview {
@@ -444,11 +460,6 @@ body {
   border-radius: 4px;
   background: var(--board-bg);
   border: 1px solid var(--border-color);
-}
-
-.theme-option.selected {
-  background: var(--square-hover);
-  border-left: 3px solid var(--x-color);
 }
 
 /* Remove old theme controls */
