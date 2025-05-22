@@ -347,36 +347,87 @@ body {
   transform: scale(1.02);
 }
 
-/* Theme customization controls - simplified dropdown */
-.theme-controls {
-  position: absolute;
+/* Theme toggle and drawer */
+.theme-toggle {
+  position: fixed;
   top: 20px;
   right: 20px;
   background: var(--board-bg);
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 0 20px var(--shadow-color);
   border: 2px solid var(--border-color);
-  z-index: 100;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: all 0.3s ease;
 }
 
-.theme-controls select {
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.theme-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--text-color);
+}
+
+.theme-drawer {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 280px;
+  height: 100vh;
   background: var(--board-bg);
+  box-shadow: -2px 0 8px var(--shadow-color);
+  padding: 20px;
+  transition: right 0.3s ease;
+  z-index: 999;
+}
+
+.theme-drawer.open {
+  right: 0;
+}
+
+.theme-drawer h3 {
   color: var(--text-color);
-  border: 1px solid var(--border-color);
-  padding: 5px;
+  margin: 0 0 20px 0;
+  font-size: 18px;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 5px 0;
   border-radius: 4px;
   cursor: pointer;
-  width: 150px;
+  transition: background-color 0.3s;
 }
 
-.theme-controls select:focus {
-  outline: none;
-  border-color: var(--x-color);
+.theme-option:hover {
+  background: var(--square-hover);
 }
 
-/* Remove old color picker styles */
-.color-picker {
+.theme-preview {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  margin-right: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.theme-option.selected {
+  background: var(--square-hover);
+  border-left: 3px solid var(--x-color);
+}
+
+/* Remove old theme controls */
+.theme-controls {
   display: none;
 }
 
