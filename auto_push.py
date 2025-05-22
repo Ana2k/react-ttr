@@ -3,8 +3,26 @@ import datetime
 import subprocess
 from pathlib import Path
 
+def get_commit_count_today():
+    try:
+        # Get today's date in YYYY-MM-DD format
+        today = datetime.datetime.now().strftime('%Y-%m-%d')
+        # Get commit count for today
+        result = subprocess.run(
+            f'git log --after="{today} 00:00:00" --before="{today} 23:59:59" --format="%H" | wc -l',
+            shell=True,
+            check=True,
+            capture_output=True,
+            text=True
+        )
+        return int(result.stdout.strip())
+    except subprocess.CalledProcessError as e:
+        print(f"Error getting commit count: {e.stderr}")
+        return 0
+
 def get_commit_message():
-    default_message = f"Auto-update: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+    commit_count = get_commit_count_today()
+    default_message = f"Auto-update: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} (Commit #{commit_count + 1} today)"
     user_message = input(f"Enter commit message (press Enter for default: '{default_message}'): ").strip()
     return user_message if user_message else default_message
 
