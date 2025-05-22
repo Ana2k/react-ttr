@@ -3,9 +3,8 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  max-width: 600px;
-  margin: 0 auto;
-  position: relative;
+  max-width: 400px;
+  margin: 20px auto;
   background: var(--board-bg);
   border-radius: 12px;
   box-shadow: 0 4px 6px var(--shadow-color);
@@ -13,11 +12,9 @@
 
 .game-title {
   color: var(--title-color);
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin-bottom: 20px;
-  text-shadow: 1px 1px 2px var(--title-shadow);
   text-align: center;
-  font-weight: 500;
 }
 
 .game-board {
@@ -51,12 +48,10 @@
   margin-bottom: 10px;
   font-size: 1.2rem;
   font-weight: bold;
-  transition: color 0.3s ease;
-  text-shadow: 0 1px 2px var(--shadow-color);
+  color: var(--text-color);
 }
 
 .game-info {
-  margin-top: 20px;
   text-align: center;
 }
 
@@ -64,6 +59,8 @@
   padding-left: 30px;
   display: inline-block;
   text-align: left;
+  max-height: 120px;
+  overflow-y: auto;
 }
 
 .game-info button {
@@ -146,7 +143,6 @@
   right: 0;
 }
 
-/* Add overlay when drawer is open */
 .theme-drawer::before {
   content: '';
   position: fixed;
@@ -207,6 +203,7 @@
 @media (max-width: 600px) {
   .game {
     padding: 10px;
+    margin: 10px;
   }
 
   .square {
@@ -216,7 +213,7 @@
   }
 
   .game-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .theme-drawer {
