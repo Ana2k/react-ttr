@@ -8,3 +8,5 @@ function MyButton({ count, onClick}){
     </button>
   )
 }
+
+export default MyButton;
