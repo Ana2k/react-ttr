@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 /**
@@ -101,6 +101,8 @@ function Board({ xIsNext, squares, onPlay}){
  * - gameOver: boolean - True if game is won or drawn
  * - theme: Object - Current theme colors
  * - isDrawerOpen: boolean - True if theme drawer is open
+ * - isDragging: boolean - True if theme drawer is being dragged
+ * - drawerRef: Ref object - Reference to the theme drawer
  * 
  * Manages the overall game state and history
  */
@@ -109,6 +111,8 @@ export default function Game() {
   const [currentMove, setCurrentMove] = useState(0);
   const [theme, setTheme] = useState('default');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const drawerRef = useRef(null);
 
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
@@ -337,6 +341,51 @@ export default function Game() {
     setIsDrawerOpen(false);
   };
 
+  const handleDragStart = (e) => {
+    if (e.target === drawerRef.current || e.target.parentElement === drawerRef.current) {
+      setIsDragging(true);
+      document.addEventListener('mousemove', handleDrag);
+      document.addEventListener('mouseup', handleDragEnd);
+      document.addEventListener('touchmove', handleDrag);
+      document.addEventListener('touchend', handleDragEnd);
+    }
+  };
+
+  const handleDrag = (e) => {
+    if (!isDragging) return;
+    
+    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    if (!clientX) return;
+
+    const windowWidth = window.innerWidth;
+    const drawerWidth = 280; // Width of the drawer
+    const threshold = windowWidth - drawerWidth - 50; // 50px threshold
+
+    if (clientX < threshold) {
+      setIsDrawerOpen(false);
+    } else {
+      setIsDrawerOpen(true);
+    }
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+    document.removeEventListener('mousemove', handleDrag);
+    document.removeEventListener('mouseup', handleDragEnd);
+    document.removeEventListener('touchmove', handleDrag);
+    document.removeEventListener('touchend', handleDragEnd);
+  };
+
+  // Clean up event listeners
+  useEffect(() => {
+    return () => {
+      document.removeEventListener('mousemove', handleDrag);
+      document.removeEventListener('mouseup', handleDragEnd);
+      document.removeEventListener('touchmove', handleDrag);
+      document.removeEventListener('touchend', handleDragEnd);
+    };
+  }, []);
+
   return (
     <div className="game">
       <h1 className="game-title">Tic Tac Toe</h1>
@@ -348,7 +397,12 @@ export default function Game() {
         </svg>
       </button>
 
-      <div className={`theme-drawer ${isDrawerOpen ? 'open' : ''}`}>
+      <div 
+        ref={drawerRef}
+        className={`theme-drawer ${isDrawerOpen ? 'open' : ''}`}
+        onMouseDown={handleDragStart}
+        onTouchStart={handleDragStart}
+      >
         <h3>Select Theme</h3>
         {Object.entries(themes).map(([key, themeData]) => (
           <div

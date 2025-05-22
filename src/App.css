@@ -422,10 +422,44 @@ body {
   padding: 20px;
   transition: right 0.3s ease;
   z-index: 999;
+  box-shadow: -2px 0 10px var(--shadow-color);
 }
 
 .theme-drawer.open {
   right: 0;
+}
+
+/* Add a draggable handle */
+.theme-drawer::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  cursor: ew-resize;
+  background: var(--board-bg);
+  border: 2px solid var(--border-color);
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  box-shadow: -2px 0 10px var(--shadow-color);
+}
+
+/* Add visual indicator for dragging */
+.theme-drawer::after {
+  content: '⋮';
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-color);
+  font-size: 20px;
+  pointer-events: none;
+}
+
+/* Add hover effect to the handle */
+.theme-drawer::before:hover {
+  background: var(--square-hover);
 }
 
 .theme-drawer h3 {
