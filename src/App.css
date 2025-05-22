@@ -160,17 +160,21 @@
   gap: 40px;
   margin: 20px;
   font-family: Arial, sans-serif;
+  min-height: 100vh;
+  align-items: center;
 }
 
 .game-board {
   background: #fff;
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border: 2px solid #333;
 }
 
 .board-row {
   display: flex;
+  position: relative;
 }
 
 .square {
@@ -185,6 +189,9 @@
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Remove right border from squares in the right column */
@@ -221,10 +228,16 @@
 
 .game-info {
   min-width: 200px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border: 2px solid #333;
 }
 
 .game-info ol {
   padding-left: 20px;
+  margin: 0;
 }
 
 .game-info button {
@@ -237,6 +250,8 @@
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.2s;
+  width: 100%;
+  text-align: left;
 }
 
 .game-info button:hover {
@@ -270,4 +285,21 @@
 
 .square:not(:empty):nth-child(even) {
   color: #F44336;
+}
+
+/* Ensure the board has proper spacing */
+.board-row + .board-row {
+  margin-top: 0;
+}
+
+/* Add a title to the game */
+.game::before {
+  content: "Tic Tac Toe";
+  position: absolute;
+  top: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  width: 100%;
 }
