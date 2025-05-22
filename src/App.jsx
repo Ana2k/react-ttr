@@ -97,6 +97,7 @@ function Board({ xIsNext, squares, onPlay}){
  * - isDraw: boolean - True if game is a draw
  * - gameOver: boolean - True if game is won or drawn
  * - theme: Object - Current theme colors
+ * - isDrawerOpen: boolean - True if theme drawer is open
  * 
  * Manages the overall game state and history
  */
@@ -104,6 +105,7 @@ export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
   const [theme, setTheme] = useState('default');
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
@@ -111,36 +113,47 @@ export default function Game() {
   const isDraw = !winner && currentSquares.every(square => square);
   const gameOver = winner || isDraw;
 
-  // Update theme based on selection
-  useEffect(() => {
-    const themes = {
-      default: {
+  const themes = {
+    default: {
+      name: 'Default',
+      colors: {
         '--x-color': '#2196F3',
         '--o-color': '#F44336',
         '--board-bg': '#ffffff',
         '--border-color': '#333333'
-      },
-      dark: {
+      }
+    },
+    dark: {
+      name: 'Dark',
+      colors: {
         '--x-color': '#64B5F6',
         '--o-color': '#EF5350',
         '--board-bg': '#2d2d2d',
         '--border-color': '#ffffff'
-      },
-      retro: {
+      }
+    },
+    retro: {
+      name: 'Retro',
+      colors: {
         '--x-color': '#FFD700',
         '--o-color': '#FF69B4',
         '--board-bg': '#000000',
         '--border-color': '#00FF00'
-      },
-      minimal: {
+      }
+    },
+    minimal: {
+      name: 'Minimal',
+      colors: {
         '--x-color': '#000000',
         '--o-color': '#666666',
         '--board-bg': '#ffffff',
         '--border-color': '#cccccc'
       }
-    };
+    }
+  };
 
-    const selectedTheme = themes[theme];
+  useEffect(() => {
+    const selectedTheme = themes[theme].colors;
     Object.entries(selectedTheme).forEach(([property, value]) => {
       document.documentElement.style.setProperty(property, value);
     });
@@ -204,21 +217,44 @@ export default function Game() {
     );
   });
 
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+
+  const selectTheme = (themeName) => {
+    setTheme(themeName);
+    setIsDrawerOpen(false);
+  };
+
   return (
     <div className="game">
       <h1 className="game-title">Tic Tac Toe</h1>
       
-      <div className="theme-controls">
-        <select 
-          value={theme} 
-          onChange={(e) => setTheme(e.target.value)}
-          aria-label="Select theme"
-        >
-          <option value="default">Default Theme</option>
-          <option value="dark">Dark Theme</option>
-          <option value="retro">Retro Theme</option>
-          <option value="minimal">Minimal Theme</option>
-        </select>
+      <button className="theme-toggle" onClick={toggleDrawer} aria-label="Toggle theme drawer">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+          <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+        </svg>
+      </button>
+
+      <div className={`theme-drawer ${isDrawerOpen ? 'open' : ''}`}>
+        <h3>Select Theme</h3>
+        {Object.entries(themes).map(([key, themeData]) => (
+          <div
+            key={key}
+            className={`theme-option ${theme === key ? 'selected' : ''}`}
+            onClick={() => selectTheme(key)}
+          >
+            <div
+              className="theme-preview"
+              style={{
+                background: themeData.colors['--board-bg'],
+                borderColor: themeData.colors['--border-color']
+              }}
+            />
+            {themeData.name}
+          </div>
+        ))}
       </div>
 
       <div className="game-board">
