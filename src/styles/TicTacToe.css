@@ -41,8 +41,8 @@
 /* Individual Squares */
 .square {
   aspect-ratio: 1;
-  background: white;
-  border: 2px solid #e0e0e0;
+  background: var(--square-bg);
+  border: 2px solid var(--border-color);
   border-radius: 10px;
   font-size: 2.5rem;
   font-weight: bold;
@@ -54,7 +54,7 @@
 }
 
 .square:hover {
-  background: #f5f5f5;
+  background: var(--square-hover);
   transform: scale(1.05);
 }
 
@@ -121,44 +121,17 @@
   animation: win 0.5s ease;
 }
 
-/* Dark Mode Support */
+/* Remove dark mode styles since we're using theme variables */
 @media (prefers-color-scheme: dark) {
   .tictactoe-container {
-    background: rgba(30, 30, 30, 0.1);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .tictactoe-title {
-    color: #fff;
+    color: var(--text-color);
   }
 
   .status {
-    color: #64b5f6;
-  }
-
-  .square {
-    background: #2d2d2d;
-    border-color: #404040;
-    color: #fff;
-  }
-
-  .square:hover {
-    background: #363636;
-  }
-
-  .square.x {
-    color: #64b5f6;
-  }
-
-  .square.o {
-    color: #ff8a80;
-  }
-
-  .tictactoe-button.new-game {
-    background: #363636;
-    color: #fff;
-  }
-
-  .tictactoe-button.new-game:hover {
-    background: #404040;
+    color: var(--status-color);
   }
 } 
