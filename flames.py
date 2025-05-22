@@ -1,31 +1,31 @@
 from collections import Counter
 
-# def get_uncommon_letters(name1, name2):
-#     count1 = Counter(name1)
-#     count2 = Counter(name2)
-
-#     s = ""
-#     for k in count1.keys():
-#         if(count2.get(k,0)==0):
-#             s+=k
-#     for k in count2.keys():
-#         if(count1.get(k,0)==0):
-#             s+=k
-        
-#     print(s)
-#     return s
-
 def get_uncommon_letters(name1, name2):
-    # Convert names to lowercase and remove spaces
-    set1 = set(name1.replace(" ", "").lower())
-    set2 = set(name2.replace(" ", "").lower())
+    count1 = Counter(name1)
+    count2 = Counter(name2)
 
-    # Symmetric difference: elements present in only one of the sets
-    uncommon = sorted(set1.symmetric_difference(set2))  # sort for consistency
+    s = ""
+    for k in count1.keys():
+        if(count2.get(k,0)==0):
+            s+=k
+    for k in count2.keys():
+        if(count1.get(k,0)==0):
+            s+=k
+        
+    print(s)
+    return s
 
-    result = ''.join(uncommon)
-    print(result)
-    return result
+# def get_uncommon_letters(name1, name2):
+#     # Convert names to lowercase and remove spaces
+#     set1 = set(name1.replace(" ", "").lower())
+#     set2 = set(name2.replace(" ", "").lower())
+
+#     # Symmetric difference: elements present in only one of the sets
+#     uncommon = sorted(set1.symmetric_difference(set2))  # sort for consistency
+
+#     result = ''.join(uncommon)
+#     print(result)
+#     return result
 
 
 def flames_result(total_uncommon):
