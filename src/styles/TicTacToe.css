@@ -59,11 +59,11 @@
 }
 
 .square.x {
-  color: #4a90e2;
+  color: var(--x-color);
 }
 
 .square.o {
-  color: #e25c4a;
+  color: var(--o-color);
 }
 
 /* Game Controls */
