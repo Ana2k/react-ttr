@@ -162,14 +162,16 @@
   font-family: Arial, sans-serif;
   min-height: 100vh;
   align-items: center;
+  position: relative;
 }
 
 .game-board {
   background: #fff;
-  padding: 30px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   border: 2px solid #333;
+  display: inline-block;
 }
 
 .board-row {
@@ -192,6 +194,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  position: relative;
 }
 
 /* Remove right border from squares in the right column */
@@ -212,6 +215,23 @@
 /* Remove top border from squares in the top row */
 .board-row:first-child .square {
   border-top: none;
+}
+
+/* Add borders to the board edges */
+.board-row:first-child .square {
+  border-top: 2px solid #333;
+}
+
+.board-row:last-child .square {
+  border-bottom: 2px solid #333;
+}
+
+.square:nth-child(3n + 1) {
+  border-left: 2px solid #333;
+}
+
+.square:nth-child(3n) {
+  border-right: 2px solid #333;
 }
 
 .square:hover {
@@ -259,10 +279,6 @@
 }
 
 /* Add some animation for X and O */
-.square {
-  position: relative;
-}
-
 .square:not(:empty) {
   animation: pop 0.3s ease-out;
 }
@@ -285,11 +301,6 @@
 
 .square:not(:empty):nth-child(even) {
   color: #F44336;
-}
-
-/* Ensure the board has proper spacing */
-.board-row + .board-row {
-  margin-top: 0;
 }
 
 /* Add a title to the game */
