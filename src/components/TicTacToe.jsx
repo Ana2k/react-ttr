@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import './TicTacToe.css';
+import '../styles/TicTacToe.css';
 
 /**
  * Square Component
@@ -11,8 +11,9 @@ import './TicTacToe.css';
  * Renders a single square in the tic-tac-toe grid that can be clicked to make a move
  */
 function Square({value, onSquareClick}){
+  const color = value === 'X' ? 'var(--x-color)' : value === 'O' ? 'var(--o-color)' : 'inherit';
   return (
-    <button className='square' onClick={onSquareClick}>
+    <button className='square' style={{ color }} onClick={onSquareClick}>
       {value}
     </button>
   );

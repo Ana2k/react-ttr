@@ -1,0 +1,137 @@
+/* Tic Tac Toe Game Styles */
+
+/* Main Container */
+.tictactoe-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Game Title */
+.tictactoe-title {
+  text-align: center;
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Game Status */
+.status {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #4a90e2;
+  font-weight: bold;
+}
+
+/* Game Board */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 0 auto;
+  max-width: 300px;
+}
+
+/* Individual Squares */
+.square {
+  aspect-ratio: 1;
+  background: var(--square-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.square:hover {
+  background: var(--square-hover);
+  transform: scale(1.05);
+}
+
+.square.x {
+  color: var(--x-color);
+}
+
+.square.o {
+  color: var(--o-color);
+}
+
+/* Game Controls */
+.game-controls {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tictactoe-button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.tictactoe-button.reset {
+  background: #4a90e2;
+  color: white;
+}
+
+.tictactoe-button.reset:hover {
+  background: #357abd;
+  transform: translateY(-2px);
+}
+
+.tictactoe-button.new-game {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.tictactoe-button.new-game:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+/* Win Animation */
+@keyframes win {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.winner {
+  animation: win 0.5s ease;
+}
+
+/* Remove dark mode styles since we're using theme variables */
+@media (prefers-color-scheme: dark) {
+  .tictactoe-container {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .tictactoe-title {
+    color: var(--text-color);
+  }
+
+  .status {
+    color: var(--status-color);
+  }
+} 
