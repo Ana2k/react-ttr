@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import './Flames.css';
+import './Flames.css';
 
 export default function Flames() {
   const [name1, setName1] = useState('');
@@ -42,7 +42,7 @@ export default function Flames() {
     }
 
     // Calculate FLAMES result
-    const flames = ['Friends', 'Love', 'Affection', 'Marriage', 'Enemy', 'Sister'];
+    const flames = ['Friends', 'Love', 'Affection', 'Marriage', 'Enemy', 'Sibling'];
     let index = 0;
     let flamesLength = flames.length;
 
@@ -70,29 +70,60 @@ export default function Flames() {
 
   return (
     <div className="flames-container">
-      <h2>FLAMES Calculator</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 className="flames-title">FLAMES Calculator</h2>
+      <form className="flames-form" onSubmit={handleSubmit}>
         <div className="input-group">
           <input
+            className="flames-input"
             type="text"
             value={name1}
             onChange={(e) => setName1(e.target.value)}
             placeholder="Enter first name"
           />
+          <div className="input-focus-border"></div>
+        </div>
+        <div className="input-group">
           <input
+            className="flames-input"
             type="text"
             value={name2}
             onChange={(e) => setName2(e.target.value)}
             placeholder="Enter second name"
           />
+          <div className="input-focus-border"></div>
         </div>
-        <button type="submit">Calculate</button>
+        <div className="button-group">
+          <button className="flames-button calculate" type="submit">Calculate</button>
+          <button 
+            className="flames-button reset" 
+            type="button" 
+            onClick={() => {
+              setName1('');
+              setName2('');
+              setResult('');
+              setError('');
+            }}
+          >
+            Reset
+          </button>
+        </div>
       </form>
-      {error && <p className="error">{error}</p>}
+      {error && <p className="error-message">{error}</p>}
       {result && (
-        <div className="result">
-          <h3>Result:</h3>
-          <p>{result}</p>
+        <div className="result-container">
+          <div className="result-card">
+            <h2>Your FLAMES Result</h2>
+            <div className="result-value">
+              {result} {
+                result === 'Friends' && '👥'
+                || result === 'Love' && '❤️'
+                || result === 'Affection' && '🥰'
+                || result === 'Marriage' && '💑'
+                || result === 'Enemy' && '😠'
+                || result === 'Sibling' && '👭'
+              }
+            </div>
+          </div>
         </div>
       )}
     </div>
