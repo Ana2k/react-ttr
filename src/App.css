@@ -571,3 +571,57 @@ body {
     right: 10px;
   }
 }
+
+.game-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.game-buttons button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--square-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.game-buttons button:hover {
+  background: var(--square-hover);
+  transform: translateY(-2px);
+}
+
+.back-button {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--square-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: var(--square-hover);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .game-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .game-buttons button {
+    width: 100%;
+    max-width: 200px;
+  }
+}
