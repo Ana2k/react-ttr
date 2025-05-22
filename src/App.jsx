@@ -3,8 +3,8 @@ import './App.css';
 
 export default function App() {
   return (
-    <div className="app">
-      <TicTacToe />
+    <div>
+      <h1>Hello React World</h1>
     </div>
   );
 }
