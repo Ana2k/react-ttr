@@ -13,9 +13,11 @@
 
 .game-title {
   color: var(--title-color);
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 4px var(--title-shadow);
+  text-shadow: 1px 1px 2px var(--title-shadow);
+  text-align: center;
+  font-weight: 500;
 }
 
 .game-board {
@@ -54,11 +56,14 @@
 }
 
 .game-info {
-  margin-left: 20px;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .game-info ol {
   padding-left: 30px;
+  display: inline-block;
+  text-align: left;
 }
 
 .game-info button {
@@ -94,22 +99,25 @@
 
 /* Theme Toggle Button */
 .theme-toggle {
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 20px;
-  background: none;
-  border: none;
+  background: var(--board-bg);
+  border: 2px solid var(--border-color);
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  z-index: 1001;
 }
 
 .theme-toggle:hover {
   background-color: var(--square-hover);
+  transform: scale(1.05);
 }
 
 .theme-toggle svg {
@@ -131,10 +139,31 @@
   transition: right 0.3s ease;
   z-index: 1000;
   cursor: pointer;
+  overflow-y: auto;
 }
 
 .theme-drawer.open {
   right: 0;
+}
+
+/* Add overlay when drawer is open */
+.theme-drawer::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: -1;
+}
+
+.theme-drawer.open::before {
+  opacity: 1;
+  visibility: visible;
 }
 
 .theme-drawer h3 {
@@ -187,7 +216,7 @@
   }
 
   .game-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .theme-drawer {

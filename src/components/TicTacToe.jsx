@@ -301,11 +301,33 @@ export default function TicTacToe() {
   };
 
   const handleDrawerClick = (e) => {
-    // Only handle clicks on the drawer handle
-    if (e.target === drawerRef.current || e.target.parentElement === drawerRef.current) {
+    // Prevent clicks from bubbling up to parent elements
+    e.stopPropagation();
+    
+    // If clicking on the drawer itself (not its children), toggle it
+    if (e.target === drawerRef.current) {
       setIsDrawerOpen(!isDrawerOpen);
     }
   };
+
+  const handleThemeOptionClick = (e, themeName) => {
+    e.stopPropagation();
+    selectTheme(themeName);
+  };
+
+  // Add click outside handler
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (isDrawerOpen && drawerRef.current && !drawerRef.current.contains(e.target)) {
+        setIsDrawerOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isDrawerOpen]);
 
   return (
     <div className="game">
@@ -328,7 +350,7 @@ export default function TicTacToe() {
           <div
             key={key}
             className={`theme-option ${theme === key ? 'selected' : ''}`}
-            onClick={() => selectTheme(key)}
+            onClick={(e) => handleThemeOptionClick(e, key)}
           >
             <div className="theme-preview">
               <div className="preview-x" style={{ color: themeData.colors['--x-color'] }}>X</div>
