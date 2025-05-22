@@ -258,6 +258,7 @@
 .game-info ol {
   padding-left: 20px;
   margin: 0;
+  margin-top: 20px;
 }
 
 .game-info button {
@@ -276,6 +277,26 @@
 
 .game-info button:hover {
   background: #45a049;
+}
+
+.restart-button {
+  background: #f44336 !important;
+  color: white;
+  border: none;
+  padding: 12px 20px !important;
+  margin: 0 0 20px 0 !important;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px !important;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center !important;
+}
+
+.restart-button:hover {
+  background: #d32f2f !important;
+  transform: scale(1.02);
 }
 
 /* Add some animation for X and O */

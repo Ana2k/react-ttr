@@ -59,11 +59,19 @@ export default function Game(){
   const [currentMove, setCurrentMove] = useState(0);
   const xIsNext = currentMove % 2===0;
   const currentSquares = history[currentMove];
+  const winner = calculateWinner(currentSquares);
+  const isDraw = !winner && currentSquares.every(square => square);
+  const gameOver = winner || isDraw;
 
   function handlePlay(nextSquares){
     const nextHistory = [...history.slice(0,currentMove+1),nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length-1);
+  }
+
+  function handleRestart() {
+    setHistory([Array(9).fill(null)]);
+    setCurrentMove(0);
   }
 
   function jumpTo(nextMove){
@@ -90,6 +98,11 @@ export default function Game(){
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
       </div>
       <div className="game-info">
+        {gameOver && (
+          <button className="restart-button" onClick={handleRestart}>
+            Restart Game
+          </button>
+        )}
         <ol>{moves}</ol>
       </div>
     </div>
