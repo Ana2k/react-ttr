@@ -29,7 +29,7 @@ def get_uncommon_letters(name1, name2):
 
 
 def flames_result(total_uncommon):
-    flames = ['F', 'L', 'A', 'M', 'E']
+    flames = ['F', 'L', 'A', 'M', 'E','S']
     index = 0
     while len(flames) > 1:
         index = (index + total_uncommon - 1) % len(flames)
@@ -43,6 +43,7 @@ def interpret_result(letter):
         'A': 'Affectionate',
         'M': 'Marriage',
         'E': 'Enemies',
+        'S': 'Siblings'
     }
     return meanings.get(letter, "Unknown")
 
