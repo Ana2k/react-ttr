@@ -13,6 +13,7 @@ export default function MyApp() {
       <MyButton count = {count} onClick = {handleClick}/>
       //this is us passing the state down to the button
       //we are passing the count and the handleClick function
+      //Lifting state up!!
     </div>
   );
 }
