@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 /**
@@ -96,17 +96,55 @@ function Board({ xIsNext, squares, onPlay}){
  * - winner: string | null - Current winner ('X', 'O', or null)
  * - isDraw: boolean - True if game is a draw
  * - gameOver: boolean - True if game is won or drawn
+ * - theme: Object - Current theme colors
  * 
  * Manages the overall game state and history
  */
-export default function Game(){
-  const [history,setHistory] = useState([Array(9).fill(null)]);
+export default function Game() {
+  const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
-  const xIsNext = currentMove % 2===0;
+  const [theme, setTheme] = useState('default');
+
+  const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
   const winner = calculateWinner(currentSquares);
   const isDraw = !winner && currentSquares.every(square => square);
   const gameOver = winner || isDraw;
+
+  // Update theme based on selection
+  useEffect(() => {
+    const themes = {
+      default: {
+        '--x-color': '#2196F3',
+        '--o-color': '#F44336',
+        '--board-bg': '#ffffff',
+        '--border-color': '#333333'
+      },
+      dark: {
+        '--x-color': '#64B5F6',
+        '--o-color': '#EF5350',
+        '--board-bg': '#2d2d2d',
+        '--border-color': '#ffffff'
+      },
+      retro: {
+        '--x-color': '#FFD700',
+        '--o-color': '#FF69B4',
+        '--board-bg': '#000000',
+        '--border-color': '#00FF00'
+      },
+      minimal: {
+        '--x-color': '#000000',
+        '--o-color': '#666666',
+        '--board-bg': '#ffffff',
+        '--border-color': '#cccccc'
+      }
+    };
+
+    const selectedTheme = themes[theme];
+    Object.entries(selectedTheme).forEach(([property, value]) => {
+      document.documentElement.style.setProperty(property, value);
+    });
+  }, [theme]);
 
   /**
    * handlePlay
@@ -152,11 +190,11 @@ export default function Game(){
    * Creates a list of buttons to navigate through game history
    * Each button allows jumping to a specific move
    */
-  const moves = history.map((squares,move) => {
+  const moves = history.map((squares, move) => {
     let description;
-    if(move > 0){
-      description = "Go to Move #"+move;
-    } else{
+    if (move > 0) {
+      description = "Go to Move #" + move;
+    } else {
       description = "Go to game start";
     }
     return (
@@ -168,8 +206,23 @@ export default function Game(){
 
   return (
     <div className="game">
+      <h1 className="game-title">Tic Tac Toe</h1>
+      
+      <div className="theme-controls">
+        <select 
+          value={theme} 
+          onChange={(e) => setTheme(e.target.value)}
+          aria-label="Select theme"
+        >
+          <option value="default">Default Theme</option>
+          <option value="dark">Dark Theme</option>
+          <option value="retro">Retro Theme</option>
+          <option value="minimal">Minimal Theme</option>
+        </select>
+      </div>
+
       <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
         {gameOver && (
@@ -180,7 +233,7 @@ export default function Game(){
         <ol>{moves}</ol>
       </div>
     </div>
-  )
+  );
 }
 
 /**

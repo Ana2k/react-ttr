@@ -153,6 +153,47 @@
   margin: 10px 0;
 }
 
+:root {
+  /* Light theme (default) */
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --board-bg: #ffffff;
+  --square-bg: #ffffff;
+  --square-hover: #f5f5f5;
+  --border-color: #333333;
+  --x-color: #2196F3;
+  --o-color: #F44336;
+  --button-bg: #4CAF50;
+  --button-hover: #45a049;
+  --restart-button-bg: #f44336;
+  --restart-button-hover: #d32f2f;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --board-bg: #2d2d2d;
+    --square-bg: #2d2d2d;
+    --square-hover: #3d3d3d;
+    --border-color: #ffffff;
+    --x-color: #64B5F6;
+    --o-color: #EF5350;
+    --button-bg: #388E3C;
+    --button-hover: #2E7D32;
+    --restart-button-bg: #EF5350;
+    --restart-button-hover: #D32F2F;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
 .game {
   display: flex;
   flex-direction: row;
@@ -163,15 +204,30 @@
   min-height: 100vh;
   align-items: center;
   position: relative;
+  padding-top: 60px;
+}
+
+.game-title {
+  position: absolute;
+  top: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--text-color);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  transition: color 0.3s;
 }
 
 .game-board {
-  background: #fff;
+  background: var(--board-bg);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  border: 2px solid #333;
+  box-shadow: 0 0 20px var(--shadow-color);
+  border: 2px solid var(--border-color);
   display: inline-block;
+  transition: all 0.3s;
 }
 
 .board-row {
@@ -182,77 +238,68 @@
 .square {
   width: 80px;
   height: 80px;
-  background: white;
-  border: 2px solid #333;
+  background: var(--square-bg);
   font-size: 40px;
   font-weight: bold;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   position: relative;
+  border: 1px solid var(--border-color);
 }
 
-/* Remove right border from squares in the right column */
-.square:nth-child(3n) {
-  border-right: none;
-}
-
-/* Remove bottom border from squares in the bottom row */
-.board-row:last-child .square {
-  border-bottom: none;
-}
-
-/* Remove left border from squares in the left column */
-.square:nth-child(3n + 1) {
-  border-left: none;
-}
-
-/* Remove top border from squares in the top row */
 .board-row:first-child .square {
-  border-top: none;
-}
-
-/* Add borders to the board edges */
-.board-row:first-child .square {
-  border-top: 2px solid #333;
+  border-top: 2px solid var(--border-color);
 }
 
 .board-row:last-child .square {
-  border-bottom: 2px solid #333;
+  border-bottom: 2px solid var(--border-color);
 }
 
-.square:nth-child(3n + 1) {
-  border-left: 2px solid #333;
+.square:nth-child(1) {
+  border-left: 2px solid var(--border-color);
 }
 
-.square:nth-child(3n) {
-  border-right: 2px solid #333;
+.square:nth-child(3) {
+  border-right: 2px solid var(--border-color);
+}
+
+.square:nth-child(1) {
+  border-left-width: 2px;
+}
+
+.square:nth-child(3) {
+  border-right-width: 2px;
 }
 
 .square:hover {
-  background: #f5f5f5;
+  background: var(--square-hover);
+  transform: scale(1.05);
+  z-index: 1;
 }
 
 .status {
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: var(--text-color);
   text-align: center;
+  transition: color 0.3s;
 }
 
 .game-info {
   min-width: 200px;
-  background: #fff;
+  background: var(--board-bg);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  border: 2px solid #333;
+  box-shadow: 0 0 20px var(--shadow-color);
+  border: 2px solid var(--border-color);
+  transition: all 0.3s;
 }
 
 .game-info ol {
@@ -262,7 +309,7 @@
 }
 
 .game-info button {
-  background: #4CAF50;
+  background: var(--button-bg);
   color: white;
   border: none;
   padding: 8px 16px;
@@ -270,17 +317,18 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
   width: 100%;
   text-align: left;
 }
 
 .game-info button:hover {
-  background: #45a049;
+  background: var(--button-hover);
+  transform: scale(1.02);
 }
 
 .restart-button {
-  background: #f44336 !important;
+  background: var(--restart-button-bg) !important;
   color: white;
   border: none;
   padding: 12px 20px !important;
@@ -295,8 +343,41 @@
 }
 
 .restart-button:hover {
-  background: #d32f2f !important;
+  background: var(--restart-button-hover) !important;
   transform: scale(1.02);
+}
+
+/* Theme customization controls - simplified dropdown */
+.theme-controls {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--board-bg);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px var(--shadow-color);
+  border: 2px solid var(--border-color);
+  z-index: 100;
+}
+
+.theme-controls select {
+  background: var(--board-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 150px;
+}
+
+.theme-controls select:focus {
+  outline: none;
+  border-color: var(--x-color);
+}
+
+/* Remove old color picker styles */
+.color-picker {
+  display: none;
 }
 
 /* Add some animation for X and O */
@@ -317,21 +398,10 @@
 
 /* Style for X and O */
 .square:not(:empty) {
-  color: #2196F3;
+  color: var(--x-color);
 }
 
 .square:not(:empty):nth-child(even) {
-  color: #F44336;
+  color: var(--o-color);
 }
 
-/* Add a title to the game */
-.game::before {
-  content: "Tic Tac Toe";
-  position: absolute;
-  top: 20px;
-  font-size: 32px;
-  font-weight: bold;
-  color: #333;
-  text-align: center;
-  width: 100%;
-}
