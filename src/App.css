@@ -155,44 +155,119 @@
 
 .game {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40px;
   margin: 20px;
+  font-family: Arial, sans-serif;
 }
 
-.board {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  background-color: #999;
-  padding: 2px;
-  border-radius: 4px;
+.game-board {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .board-row {
   display: flex;
-  gap: 2px;
 }
 
 .square {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   background: white;
-  border: none;
-  font-size: 24px;
+  border: 2px solid #333;
+  font-size: 40px;
   font-weight: bold;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.2s;
+}
+
+/* Remove right border from squares in the right column */
+.square:nth-child(3n) {
+  border-right: none;
+}
+
+/* Remove bottom border from squares in the bottom row */
+.board-row:last-child .square {
+  border-bottom: none;
+}
+
+/* Remove left border from squares in the left column */
+.square:nth-child(3n + 1) {
+  border-left: none;
+}
+
+/* Remove top border from squares in the top row */
+.board-row:first-child .square {
+  border-top: none;
 }
 
 .square:hover {
-  background: #f0f0f0;
+  background: #f5f5f5;
 }
 
 .status {
-  margin-bottom: 10px;
-  font-size: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
   font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.game-info {
+  min-width: 200px;
+}
+
+.game-info ol {
+  padding-left: 20px;
+}
+
+.game-info button {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 5px 0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.game-info button:hover {
+  background: #45a049;
+}
+
+/* Add some animation for X and O */
+.square {
+  position: relative;
+}
+
+.square:not(:empty) {
+  animation: pop 0.3s ease-out;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Style for X and O */
+.square:not(:empty) {
+  color: #2196F3;
+}
+
+.square:not(:empty):nth-child(even) {
+  color: #F44336;
 }
