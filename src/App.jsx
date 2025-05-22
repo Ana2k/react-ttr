@@ -1,6 +1,15 @@
 import { useState } from 'react';
 import './App.css';
 
+/**
+ * Square Component
+ * -----------------
+ * Props:
+ * - value: string | null - The content to display in the square ('X', 'O', or null)
+ * - onSquareClick: function - Callback function when square is clicked
+ * 
+ * Renders a single square in the tic-tac-toe grid that can be clicked to make a move
+ */
 function Square({value, onSquareClick}){
   return (
     <button className='square' onClick={onSquareClick}>
@@ -9,7 +18,29 @@ function Square({value, onSquareClick}){
   );
 }
 
+/**
+ * Board Component
+ * --------------
+ * Props:
+ * - xIsNext: boolean - Indicates if it's X's turn (true) or O's turn (false)
+ * - squares: Array(9) - Current state of the board, array of 9 elements (null, 'X', or 'O')
+ * - onPlay: function - Callback function to handle a move
+ * 
+ * Manages the game board, handles moves, and displays the current game status
+ */
 function Board({ xIsNext, squares, onPlay}){
+  /**
+   * handleClick
+   * ----------
+   * Parameters:
+   * - i: number - Index of the clicked square (0-8)
+   * 
+   * Handles the logic when a square is clicked:
+   * 1. Checks if move is valid
+   * 2. Creates new board state
+   * 3. Places X or O
+   * 4. Calls onPlay with new state
+   */
   function handleClick(i){
     if (calculateWinner(squares) || squares[i]){
       return;
@@ -54,6 +85,20 @@ function Board({ xIsNext, squares, onPlay}){
   );
 }
 
+/**
+ * Game Component (Main Component)
+ * -----------------------------
+ * State Variables:
+ * - history: Array - Array of board states, each state is an array of 9 elements
+ * - currentMove: number - Index of the current move in history
+ * - xIsNext: boolean - Derived state, true if it's X's turn
+ * - currentSquares: Array - Current board state from history
+ * - winner: string | null - Current winner ('X', 'O', or null)
+ * - isDraw: boolean - True if game is a draw
+ * - gameOver: boolean - True if game is won or drawn
+ * 
+ * Manages the overall game state and history
+ */
 export default function Game(){
   const [history,setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
@@ -63,21 +108,50 @@ export default function Game(){
   const isDraw = !winner && currentSquares.every(square => square);
   const gameOver = winner || isDraw;
 
+  /**
+   * handlePlay
+   * ----------
+   * Parameters:
+   * - nextSquares: Array - New board state after a move
+   * 
+   * Updates game history with new move and advances current move
+   */
   function handlePlay(nextSquares){
     const nextHistory = [...history.slice(0,currentMove+1),nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length-1);
   }
 
+  /**
+   * handleRestart
+   * ------------
+   * Resets the game to initial state:
+   * - Clears history to initial empty board
+   * - Resets current move to 0
+   */
   function handleRestart() {
     setHistory([Array(9).fill(null)]);
     setCurrentMove(0);
   }
 
+  /**
+   * jumpTo
+   * ------
+   * Parameters:
+   * - nextMove: number - Move number to jump to
+   * 
+   * Allows going back to a previous move in the game history
+   */
   function jumpTo(nextMove){
     setCurrentMove(nextMove);
   }
 
+  /**
+   * moves
+   * -----
+   * Creates a list of buttons to navigate through game history
+   * Each button allows jumping to a specific move
+   */
   const moves = history.map((squares,move) => {
     let description;
     if(move > 0){
@@ -109,16 +183,30 @@ export default function Game(){
   )
 }
 
+/**
+ * calculateWinner
+ * --------------
+ * Parameters:
+ * - squares: Array - Current board state
+ * 
+ * Returns:
+ * - string | null - 'X' or 'O' if there's a winner, null if no winner
+ * 
+ * Checks all possible winning combinations:
+ * - 3 rows
+ * - 3 columns
+ * - 2 diagonals
+ */
 function calculateWinner(squares){
   const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
+    [0, 1, 2], // top row
+    [3, 4, 5], // middle row
+    [6, 7, 8], // bottom row
+    [0, 3, 6], // left column
+    [1, 4, 7], // middle column
+    [2, 5, 8], // right column
+    [0, 4, 8], // diagonal top-left to bottom-right
+    [2, 4, 6], // diagonal top-right to bottom-left
   ];
   for (let i=0;i<lines.length;i++){
     const [a,b,c] = lines[i];
