@@ -2,7 +2,7 @@ import { useState } from 'react';
 import TicTacToe from './components/TicTacToe';
 import Flames from './components/Flames';
 import './App.css';
-
+//not sure if this works but hopefully it does?
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
 
