@@ -1,8 +1,9 @@
 //Option + ⌘ + J - for opening console in web-browser.
 import { useState } from 'react';
+//This is react. We like React. Now shut up and add a github
 
 function Square({value, onSquareClick}){
-  const [value, setValue] = useState(Array(9).fill(null));
+  const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(){
     const nextSquares = squares.slice();
