@@ -2,15 +2,6 @@
 //To remember things componenets use states.
 import { useState } from 'react';
 
-//To check for the winner of the tic-tac-toe game the Board would somehow need to know state of each of the 9 components.
-
-//store game's state in the parent board's component.
-
-//board component can tell each square what to display by passing a prop.
-
-//Have two child components communicate with each other.
-
-//Parent component can pass state back down to the children.
 
 function Square({ value }){
   //value here will start off as equal to null.
