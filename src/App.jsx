@@ -2,28 +2,29 @@
 //To remember things componenets use states.
 import { useState } from 'react';
 
-function handleClick(){
-  //The handleClick function creates a copy of the squares array (nextSquares) with the JavaScript slice() Array method. Then, handleClick updates the nextSquares array to add X to the first ([0] index) square.
-  const nextSquares = squares.slice()
-}
-
 function Square({ value, onSquareClick }){
-  //value here will start off as equal to null.
-  return (
-    //onClick and className are defined functions.
-    //handleClick is the onClick's sibling.
 
+  return (
     <button className="square" onClick={onSquareClick}>{value}</button>
   );
 }
 
 export default function Board(){
+  const [xIsNext,setXIsNext] = useState(true);
   const [squares,setSquares] = useState(Array(9).fill(null));
+
   function handleClick(i){
     const nextSquares = squares.slice();
-    nextSquares[i] = "X";
+    if(xIsNext){
+      nextSquares[i] = "X";
+    }
+    else{
+      nextSquares[i] = "O";
+    }
     setSquares(nextSquares);
+    setXIsNext(!xIsNext);
   }
+
   return (
     <>
     <div className="board-row">
