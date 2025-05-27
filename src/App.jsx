@@ -1,7 +1,7 @@
 //Option + ⌘ + J - for opening console in web-browser.
 import { useState } from 'react';
 
-function Square(){
+function Square({value}){
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(){
@@ -15,7 +15,7 @@ function Square(){
   );
 }
 
-export default function oard(){
+export default function Board({value}){
   return (
     <>
     <div className="board-row">
