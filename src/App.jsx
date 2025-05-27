@@ -12,15 +12,8 @@ import { useState } from 'react';
 
 //Parent component can pass state back down to the children.
 
-function Square(){
+function Square({ value }){
   //value here will start off as equal to null.
-  const [value,setValue] = useState(Array(9).fill(null));
-
-  function handleClick(){
-    //setvalue from onclick means - react re-renders the square whenever it is being clicked.
-    setValue("X");
-  }
-
   return (
     <button className="square">{value}</button>
   );
