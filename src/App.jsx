@@ -6,9 +6,7 @@ function Square(){
   //value here will start off as equal to null.
   const [value,setValue] = useState(null); 
   function handleClick(){
-    const count=0;
-    console.log("handleclicked",count+1);
-    count+=1;
+    console.log("handleclicked");
   }
 
   return (
