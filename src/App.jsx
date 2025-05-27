@@ -2,11 +2,14 @@
 //To remember things componenets use states.
 import { useState } from 'react';
 
+function onSquareClick(){
 
-function Square({ value }){
+}
+
+function Square({ value,onSquareClick }){
   //value here will start off as equal to null.
   return (
-    <button className="square">{value}</button>
+    <button className="square" onSquareClick={handleClick}>{value}</button>
   );
 }
 
