@@ -1,10 +1,14 @@
 //Option + ⌘ + J - for opening console in web-browser.
+//To remember things componenets use states.
 import { useState } from 'react';
 
-function Square({value}){
-
+function Square(){
+  //value here will start off as equal to null.
+  const [value,setValue] = useState(null); 
   function handleClick(){
-    console.log("handleclicked");
+    const count=0;
+    console.log("handleclicked",count+1);
+    count+=1;
   }
 
   return (
