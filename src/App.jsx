@@ -6,7 +6,8 @@ function Square(){
   //value here will start off as equal to null.
   const [value,setValue] = useState(null); 
   function handleClick(){
-    console.log("handleclicked");
+    //setvalue from onclick means - react re-renders the square whenever it is being clicked.
+    setValue("X");
   }
 
   return (
