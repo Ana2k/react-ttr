@@ -8,7 +8,7 @@ function Square({ value, onSquareClick }){
   );
 }
 
-export default function Board(){
+function Board(){
   const [xIsNext,setXIsNext] = useState(true);
   const [squares,setSquares] = useState(Array(9).fill(null));
 
@@ -17,7 +17,10 @@ export default function Board(){
     if(squares[i] || calculateWinner(squares)){
       return;
     }
+    //Helps implement time-travel.
     const nextSquares = squares.slice();
+
+    //History array to store all the board states - inside Games.
 
     if(xIsNext){
       nextSquares[i] = "X";
@@ -80,4 +83,19 @@ export default function Board(){
     </div>
     </>
   );
+}
+
+export default function Game(){
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board />
+      </div>
+      <div className="game-info">
+        <ol>{/*TODO()*/}</ol>
+      </div>
+    </div>
+
+
+  )
 }
