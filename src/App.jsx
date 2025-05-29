@@ -85,13 +85,31 @@ export default function Game(){
   const [xIsNext,setXIsNext] = useState(true);
   const [history,setHistory] = useState([Array(9).fill(null)]);
   const currentSquares = history[history.length-1];
-
+  
   function handlePlay(nextSquares){
     // Takes the current history (array of past board states).
     // Spreads (...) the existing history into a new array.
     setHistory([...history,nextSquares]);
     setXIsNext(!xIsNext);
   }
+
+  function jumpTo(nextMove){
+    //Todo()
+  }
+
+  const moves = history.map((squares,move)=>{
+    let description;
+    if(move>0){
+      description = "Go to move #"+move;
+    } else{
+      description = "Go to game start";
+    }
+    return (
+      <li>
+        <button onClick={() => jumpTo(move)}>{description}</button>
+      </li>
+    );
+  });
 
   return (
     <div className="game">
