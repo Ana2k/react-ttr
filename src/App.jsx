@@ -2,18 +2,16 @@
 //To remember things componenets use states.
 import { useState } from 'react';
 
+
 function Square({ value, onSquareClick }){
   return (
     <button className="square" onClick={onSquareClick}>{value}</button>
   );
 }
 
-function Board(){
-  const [xIsNext,setXIsNext] = useState(true);
-  const [squares,setSquares] = useState(Array(9).fill(null));
+function Board({ xIsNext, squares, onPlay}){
 
   function handleClick(i){
-    //Debug - i can overwrite the squares without this
     if(squares[i] || calculateWinner(squares)){
       return;
     }
@@ -28,8 +26,7 @@ function Board(){
     else{
       nextSquares[i] = "O";
     }
-    setSquares(nextSquares);
-    setXIsNext(!xIsNext);
+    onPlay(nextSquares);
   }
 
   function calculateWinner(squares){
@@ -50,8 +47,6 @@ function Board(){
         return squares[a];
       }
     }
-    console.log(squares);
-    console.log()
     return null;
   }
 
@@ -86,16 +81,26 @@ function Board(){
 }
 
 export default function Game(){
+
+  const [xIsNext,setXIsNext] = useState(true);
+  const [history,setHistory] = useState([Array(9).fill(null)]);
+  const currentSquares = history[history.length-1];
+
+  function handlePlay(nextSquares){
+    // Takes the current history (array of past board states).
+    // Spreads (...) the existing history into a new array.
+    setHistory([...history,nextSquares]);
+    setXIsNext(!xIsNext);
+  }
+
   return (
     <div className="game">
       <div className="game-board">
-        <Board />
+        <Board xIsNext={xIsNext} squares = {currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
         <ol>{/*TODO()*/}</ol>
       </div>
     </div>
-
-
-  )
+  );
 }
