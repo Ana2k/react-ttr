@@ -105,7 +105,7 @@ export default function Game(){
       description = "Go to game start";
     }
     return (
-      <li>
+      <li key = {move}>
         <button onClick={() => jumpTo(move)}>{description}</button>
       </li>
     );
@@ -122,3 +122,15 @@ export default function Game(){
     </div>
   );
 }
+  /*If the current list is missing a key that existed
+  //previously in the list, react destroys the previous component.
+  //If two keys match, the corresponding component is moved.*/
+
+  //key is a special reserved property in React. 
+  //key may look like it passed a props.
+  //React automatically uses key to decide which components to update.
+
+  // No way for a component to ask what key its parent specified.
+
+  //Unique keys between components and their siblings.
+
