@@ -1,0 +1,72 @@
+:root {
+  /* Light theme */
+  --light-bg: #f0f2f5;
+  --light-text: #1a1a1a;
+  --light-border: #e0e0e0;
+  --light-shadow: rgba(0, 0, 0, 0.1);
+  --light-button-bg: #4a90e2;
+  --light-button-hover: #357abd;
+  --light-input-bg: #ffffff;
+  --light-input-border: #e0e0e0;
+  --light-input-focus: #4a90e2;
+  --light-board-bg: #ffffff;
+  --light-square-bg: #f8f9fa;
+  --light-square-hover: #e9ecef;
+  --light-restart-button-bg: #28a745;
+  --light-restart-button-hover: #218838;
+  --light-status-color: #1a1a1a;
+
+  /* Dark theme */
+  --dark-bg: #1a1a1a;
+  --dark-text: #ffffff;
+  --dark-border: #333333;
+  --dark-shadow: rgba(0, 0, 0, 0.3);
+  --dark-button-bg: #357abd;
+  --dark-button-hover: #2c6aa0;
+  --dark-input-bg: #2d2d2d;
+  --dark-input-border: #404040;
+  --dark-input-focus: #357abd;
+  --dark-board-bg: #2d2d2d;
+  --dark-square-bg: #333333;
+  --dark-square-hover: #404040;
+  --dark-restart-button-bg: #218838;
+  --dark-restart-button-hover: #1e7e34;
+  --dark-status-color: #ffffff;
+}
+
+/* Theme variables */
+[data-theme="light"] {
+  --bg: var(--light-bg);
+  --text: var(--light-text);
+  --border-color: var(--light-border);
+  --shadow-color: var(--light-shadow);
+  --button-bg: var(--light-button-bg);
+  --button-hover: var(--light-button-hover);
+  --input-bg: var(--light-input-bg);
+  --input-border: var(--light-input-border);
+  --input-focus: var(--light-input-focus);
+  --board-bg: var(--light-board-bg);
+  --square-bg: var(--light-square-bg);
+  --square-hover: var(--light-square-hover);
+  --restart-button-bg: var(--light-restart-button-bg);
+  --restart-button-hover: var(--light-restart-button-hover);
+  --status-color: var(--light-status-color);
+}
+
+[data-theme="dark"] {
+  --bg: var(--dark-bg);
+  --text: var(--dark-text);
+  --border-color: var(--dark-border);
+  --shadow-color: var(--dark-shadow);
+  --button-bg: var(--dark-button-bg);
+  --button-hover: var(--dark-button-hover);
+  --input-bg: var(--dark-input-bg);
+  --input-border: var(--dark-input-border);
+  --input-focus: var(--dark-input-focus);
+  --board-bg: var(--dark-board-bg);
+  --square-bg: var(--dark-square-bg);
+  --square-hover: var(--dark-square-hover);
+  --restart-button-bg: var(--dark-restart-button-bg);
+  --restart-button-hover: var(--dark-restart-button-hover);
+  --status-color: var(--dark-status-color);
+} 
