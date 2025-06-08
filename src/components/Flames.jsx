@@ -63,10 +63,8 @@ export default function Flames() {
     return meanings[letter] || 'Unknown';
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const calculateFlames = () => {
     setError('');
-
     if (!name1.trim() || !name2.trim()) {
       setError('Please enter both names');
       return;
@@ -85,6 +83,11 @@ export default function Flames() {
     const relationship = interpretResult(resultLetter);
 
     setResult(relationship);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    calculateFlames();
   };
 
   return (
