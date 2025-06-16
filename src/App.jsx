@@ -26,7 +26,9 @@ const themes = {
       '--move-list-hover': '#f0f0f0',
       '--title-color': '#333333',
       '--title-shadow': 'rgba(0, 0, 0, 0.1)',
-      '--background-pattern': 'linear-gradient(135deg, #f5f5f5 25%, transparent 25%), linear-gradient(225deg, #f5f5f5 25%, transparent 25%), linear-gradient(45deg, #f5f5f5 25%, transparent 25%), linear-gradient(315deg, #f5f5f5 25%, #ffffff 25%)'
+      '--background-pattern': 'linear-gradient(135deg, #f5f5f5 25%, transparent 25%), linear-gradient(225deg, #f5f5f5 25%, transparent 25%), linear-gradient(45deg, #f5f5f5 25%, transparent 25%), linear-gradient(315deg, #f5f5f5 25%, #ffffff 25%)',
+      '--flames-result-color': '#4CAF50',
+      '--input-text-color': '#333333',
     }
   },
   dark: {
@@ -50,7 +52,9 @@ const themes = {
       '--move-list-hover': '#3d3d3d',
       '--title-color': '#ffffff',
       '--title-shadow': 'rgba(0, 0, 0, 0.3)',
-      '--background-pattern': 'linear-gradient(135deg, #2d2d2d 25%, transparent 25%), linear-gradient(225deg, #2d2d2d 25%, transparent 25%), linear-gradient(45deg, #2d2d2d 25%, transparent 25%), linear-gradient(315deg, #2d2d2d 25%, #1a1a1a 25%)'
+      '--background-pattern': 'linear-gradient(135deg, #2d2d2d 25%, transparent 25%), linear-gradient(225deg, #2d2d2d 25%, transparent 25%), linear-gradient(45deg, #2d2d2d 25%, transparent 25%), linear-gradient(315deg, #2d2d2d 25%, #1a1a1a 25%)',
+      '--flames-result-color': '#64B5F6',
+      '--input-text-color': '#ffffff',
     }
   },
   retro: {
@@ -74,7 +78,9 @@ const themes = {
       '--move-list-hover': '#1a1a1a',
       '--title-color': '#FFD700',
       '--title-shadow': 'rgba(0, 255, 0, 0.3)',
-      '--background-pattern': 'linear-gradient(135deg, #1a1a1a 25%, transparent 25%), linear-gradient(225deg, #1a1a1a 25%, transparent 25%), linear-gradient(45deg, #1a1a1a 25%, transparent 25%), linear-gradient(315deg, #1a1a1a 25%, #000000 25%)'
+      '--background-pattern': 'linear-gradient(135deg, #1a1a1a 25%, transparent 25%), linear-gradient(225deg, #1a1a1a 25%, transparent 25%), linear-gradient(45deg, #1a1a1a 25%, transparent 25%), linear-gradient(315deg, #1a1a1a 25%, #000000 25%)',
+      '--flames-result-color': '#FFD700',
+      '--input-text-color': '#ffffff',
     }
   },
   minimal: {
@@ -98,7 +104,9 @@ const themes = {
       '--move-list-hover': '#f0f0f0',
       '--title-color': '#333333',
       '--title-shadow': 'rgba(0, 0, 0, 0.1)',
-      '--background-pattern': 'linear-gradient(135deg, #e0e0e0 25%, transparent 25%), linear-gradient(225deg, #e0e0e0 25%, transparent 25%), linear-gradient(45deg, #e0e0e0 25%, transparent 25%), linear-gradient(315deg, #e0e0e0 25%, #f5f5f5 25%)'
+      '--background-pattern': 'linear-gradient(135deg, #e0e0e0 25%, transparent 25%), linear-gradient(225deg, #e0e0e0 25%, transparent 25%), linear-gradient(45deg, #e0e0e0 25%, transparent 25%), linear-gradient(315deg, #e0e0e0 25%, #f5f5f5 25%)',
+      '--flames-result-color': '#FF5722',
+      '--input-text-color': '#333333',
     }
   },
   nature: {
@@ -122,7 +130,9 @@ const themes = {
       '--move-list-hover': '#F1F8E9',
       '--title-color': '#2E7D32',
       '--title-shadow': 'rgba(76, 175, 80, 0.2)',
-      '--background-pattern': 'linear-gradient(135deg, #C8E6C9 25%, transparent 25%), linear-gradient(225deg, #C8E6C9 25%, transparent 25%), linear-gradient(45deg, #C8E6C9 25%, transparent 25%), linear-gradient(315deg, #C8E6C9 25%, #E8F5E9 25%)'
+      '--background-pattern': 'linear-gradient(135deg, #C8E6C9 25%, transparent 25%), linear-gradient(225deg, #C8E6C9 25%, transparent 25%), linear-gradient(45deg, #C8E6C9 25%, transparent 25%), linear-gradient(315deg, #C8E6C9 25%, #E8F5E9 25%)',
+      '--flames-result-color': '#4CAF50',
+      '--input-text-color': '#2E7D32',
     }
   },
   sunset: {
@@ -146,7 +156,9 @@ const themes = {
       '--move-list-hover': '#FFECB3',
       '--title-color': '#E65100',
       '--title-shadow': 'rgba(255, 152, 0, 0.2)',
-      '--background-pattern': 'linear-gradient(135deg, #FFE0B2 25%, transparent 25%), linear-gradient(225deg, #FFE0B2 25%, transparent 25%), linear-gradient(45deg, #FFE0B2 25%, transparent 25%), linear-gradient(315deg, #FFE0B2 25%, #FFF3E0 25%)'
+      '--background-pattern': 'linear-gradient(135deg, #FFE0B2 25%, transparent 25%), linear-gradient(225deg, #FFE0B2 25%, transparent 25%), linear-gradient(45deg, #FFE0B2 25%, transparent 25%), linear-gradient(315deg, #FFE0B2 25%, #FFF3E0 25%)',
+      '--flames-result-color': '#FF9800',
+      '--input-text-color': '#E65100',
     }
   }
 };
