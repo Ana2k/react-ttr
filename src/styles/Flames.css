@@ -4,7 +4,7 @@
 .flames-container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   background: var(--board-bg);
   border-radius: 20px;
   box-shadow: 0 8px 32px var(--shadow-color);
@@ -26,9 +26,9 @@
   flex-direction: column;
   gap: 1.5rem;
   background: var(--square-bg);
-  padding: 2rem;
   border-radius: 15px;
   box-shadow: 0 4px 16px var(--shadow-color);
+  padding: 0.5rem 0.5rem 1.5rem 0.5rem;
 }
 
 /* Input Group Styling */
@@ -38,6 +38,7 @@
 
 .flames-input {
   width: 100%;
+  box-sizing: border-box;
   padding: 1rem;
   font-size: 1.1rem;
   border: 2px solid var(--border-color);
@@ -45,6 +46,7 @@
   background: var(--square-bg);
   color: var(--text-color);
   transition: all 0.3s ease;
+  margin: 0;
 }
 
 .flames-input:focus {
